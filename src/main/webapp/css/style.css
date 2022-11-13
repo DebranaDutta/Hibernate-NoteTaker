@@ -1,0 +1,46 @@
+@charset "ISO-8859-1";
+
+.purple {
+	background: #EAF0D9;
+	border-radius: 15px;
+}
+
+.button1 {
+	border-radius: 10px;
+}
+
+.search1 {
+	border-radius: 10px;
+}
+
+ul li a {
+	font-family: cursive;
+}
+
+b {
+	font-size: 25px;
+	font-style: oblique;
+	font-family: cursive;
+}
+
+.div1{
+	background: #D9F0EF;
+	border-radius: 15px;
+}
+
+#noteTitle{
+	width: 100%;
+	margin-top: 10px;
+	border-radius: 15px
+	
+}
+#noteContent{
+	width: 100%;
+	margin-top: 5px;
+	border-radius: 15px;
+	height: 50%;
+}
+.button2 {
+	margin-bottom: 10px;
+	border-radius: 15px;
+}
