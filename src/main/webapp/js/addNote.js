@@ -1,9 +1,7 @@
 $(document).ready(function() {
-	console.log("form loaded");
 	$('#button2').click(function() {
 		var noteTitle = $('#noteTitle').val();
 		var noteContent = $('#noteContent').val();
-		console.log(noteTitle, noteContent);
 		$.ajax({
 			type : 'POST',
 			url : 'AddNoteController',
@@ -12,7 +10,11 @@ $(document).ready(function() {
 				noteContent : noteContent
 			},
 			success : function(resp) {
-
+				console.log(resp);
+				swal("Not added successfully. Redirecting to Show Notes page")
+				.then((value)=>{
+					window.location="showNotes.jsp"
+				});
 			}
 		});
 	});

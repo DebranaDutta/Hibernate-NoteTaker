@@ -9,7 +9,7 @@
 		<ul class="navbar-nav mr-auto">
 			<li class="nav-item"><a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a></li>
 			<li class="nav-item"><a class="nav-link" href="addNotes.jsp">Add Note</a></li>
-			<li class="nav-item"><a class="nav-link" href="#">Show Notes</a></li>
+			<li class="nav-item"><a class="nav-link" href="showNotesController?msg=<%="hello"%>">Show Notes</a></li>
 		</ul>
 		<form class="form-inline my-2 my-lg-0">
 			<input class="form-control mr-sm-2 search1" type="search" placeholder="Search" aria-label="Search">

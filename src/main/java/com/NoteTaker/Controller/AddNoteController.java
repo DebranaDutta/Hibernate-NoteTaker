@@ -1,13 +1,16 @@
 package com.NoteTaker.Controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.Random;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -15,6 +18,7 @@ import org.hibernate.Transaction;
 import com.NoteTaker.Entity.Note;
 import com.NoteTaker.Helper.FactoryProvider;
 
+@WebServlet(name = "AddNoteController", urlPatterns = {"/AddNoteController"})
 public class AddNoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -38,6 +42,7 @@ public class AddNoteController extends HttpServlet {
 		session.save(note);
 		transaction.commit();
 		session.close();
+		PrintWriter out=response.getWriter();
+		out.println("Added");
 	}
-
 }

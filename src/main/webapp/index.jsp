@@ -14,7 +14,7 @@
 </head>
 <body>
 	<div class="container-fluid">
-		<%@include file="CommonPages/navbar.jsp"%>
+		<%@include file="navbar.jsp" %>
 	</div>
 	
 	<!-- Optional JavaScript -->

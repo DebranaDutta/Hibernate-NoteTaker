@@ -1,4 +1,11 @@
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="com.NoteTaker.Entity.Note"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+
+<%
+ArrayList<Note> notes = (ArrayList<Note>) session.getAttribute("notes");
+%>
 <html lang="en">
 <head>
 <!-- Required meta tags -->
@@ -15,20 +22,26 @@
 	<div>
 		<%@include file="navbar.jsp"%>
 	</div>
-	<div class="container-fluid mt-3 div1">
-		<form>
-			<div class="form-group">
-				<input type="text" id="noteTitle" placeholder="Enter note title" required="required">
+	<%
+	for (Note note : notes) {
+	%>
+	<div class="container-fluid mt-3">
+		<div class="card" style="border-radius: 15px;">
+			<div class="card-header text-center" style="border-radius: 15px; background: #EDF7F7"><%=note.getId()%>
+				<input type="hidden" class="noteId" value="<%=note.getId()%>" />
 			</div>
-			<div class="form-group">
-				<textarea id="noteContent" placeholder="Enter details" required="required"></textarea>
+			<div class="card-body text-center" style="background: #FEFEFE;">
+				<h5 class="card-title" style="font-family: cursive; font-size: 25px;"><%=note.getTitle()%></h5>
+				<p class="card-text" style="font-family: cursive;"><%=note.getContent()%></p>
+				<input type="button" class="btn btn-success" value="EDIT" id="btn-edit" style="border-radius: 15px; font-family: cursive;" />
+				<input type="button" class="btn btn-danger" value="DELETE" id="btn-delete" style="border-radius: 15px; font-family: cursive;" />
 			</div>
-			<div class="text-center">
-				<button type="button" id="button2" class="btn btn-info my-2 my-sm-0 button2">Save</button>
-			</div>
-		</form>
+			<div class="card-footer text-center" style="border-radius: 15px; background: #EDF7F7"><%=note.getDate()%></div>
+		</div>
 	</div>
-
+	<%
+	}
+	%>
 	<!-- Optional JavaScript -->
 	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -39,8 +52,8 @@
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a2eb5bebaa.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<!-- Custom Script -->
-	<script type="text/javascript" src="js/addNote.js"></script>
+	<script type="text/javascript" src="js/deleteNote.js"></script>
+
 </body>
 </html>
