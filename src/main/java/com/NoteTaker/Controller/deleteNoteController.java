@@ -1,41 +1,38 @@
 package com.NoteTaker.Controller;
 
 import java.io.IOException;
-import java.util.List;
-import org.hibernate.query.*;
+import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import com.NoteTaker.Entity.Note;
 import com.NoteTaker.Helper.FactoryProvider;
 
-@WebServlet(name = "showNotesController", urlPatterns = {"/showNotesController"})
-public class showNotesController extends HttpServlet {
+@WebServlet(name = "deleteNoteController", urlPatterns = {"/deleteNoteController"})
+public class deleteNoteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    public showNotesController() {
+    public deleteNoteController() {
         super();
     }
-
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Session session=FactoryProvider.getFactory().openSession();
-		Query query=session.createQuery("from Note");
-		List<Note> notes=query.list();
-		HttpSession httpSession=request.getSession();
-		httpSession.setAttribute("notes", notes);
-		response.sendRedirect("showNotes.jsp");
+		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
-
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		doGet(request, response);
+		int noteId=Integer.parseInt(request.getParameter("noteId"));	
+		Session session=FactoryProvider.getFactory().openSession();
+		Transaction transaction=session.beginTransaction();
+		Note note=(Note)session.get(Note.class, noteId);
+		session.remove(note);
+		transaction.commit();
+		session.close();
+		PrintWriter out=response.getWriter();
+		out.print("removed");
 	}
-
 }

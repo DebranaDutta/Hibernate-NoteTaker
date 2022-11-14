@@ -11,7 +11,7 @@ $(document).ready(function() {
 			},
 			success : function(resp) {
 				console.log(resp);
-				swal("Not added successfully. Redirecting to Show Notes page")
+				swal("Note added successfully. Redirecting to Show Notes page")
 				.then((value)=>{
 					window.location="showNotes.jsp"
 				});

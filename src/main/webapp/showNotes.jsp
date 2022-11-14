@@ -28,13 +28,14 @@ ArrayList<Note> notes = (ArrayList<Note>) session.getAttribute("notes");
 	<div class="container-fluid mt-3">
 		<div class="card" style="border-radius: 15px;">
 			<div class="card-header text-center" style="border-radius: 15px; background: #EDF7F7"><%=note.getId()%>
-				<input type="hidden" class="noteId" value="<%=note.getId()%>" />
 			</div>
 			<div class="card-body text-center" style="background: #FEFEFE;">
 				<h5 class="card-title" style="font-family: cursive; font-size: 25px;"><%=note.getTitle()%></h5>
 				<p class="card-text" style="font-family: cursive;"><%=note.getContent()%></p>
-				<input type="button" class="btn btn-success" value="EDIT" id="btn-edit" style="border-radius: 15px; font-family: cursive;" />
-				<input type="button" class="btn btn-danger" value="DELETE" id="btn-delete" style="border-radius: 15px; font-family: cursive;" />
+				<!-- <input type="button" class="btn btn-success btnEdit" id="btnEdit" value="EDIT"/>
+				<input type="button" class="btn btn-danger btnDelete" id="btnDelete" value="DELETE"/> -->
+				<button type="button" class="btn btn-success" value="<%=note.getId()%>">EDIT</button>
+				<button type="button" class="btn btn-danger btnDelete" value="<%=note.getId()%>">DELETE</button>
 			</div>
 			<div class="card-footer text-center" style="border-radius: 15px; background: #EDF7F7"><%=note.getDate()%></div>
 		</div>
@@ -52,8 +53,8 @@ ArrayList<Note> notes = (ArrayList<Note>) session.getAttribute("notes");
 		integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 	<script src="https://kit.fontawesome.com/a2eb5bebaa.js" crossorigin="anonymous"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<!-- Custom Script -->
 	<script type="text/javascript" src="js/deleteNote.js"></script>
-
 </body>
 </html>

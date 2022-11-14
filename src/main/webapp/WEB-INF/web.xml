@@ -14,6 +14,12 @@
 		<description></description>
 		<servlet-class>com.NoteTaker.Controller.showNotesController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>deleteNoteController</servlet-name>
+		<display-name>deleteNoteController</display-name>
+		<description></description>
+		<servlet-class>com.NoteTaker.Controller.deleteNoteController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AddNoteController</servlet-name>
 		<url-pattern>/AddNoteController</url-pattern>
@@ -21,6 +27,10 @@
 	<servlet-mapping>
 		<servlet-name>showNotesController</servlet-name>
 		<url-pattern>/showNotesController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>deleteNoteController</servlet-name>
+		<url-pattern>/deleteNoteController</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>
