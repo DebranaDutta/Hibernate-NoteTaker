@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -25,14 +26,23 @@ public class deleteNoteController extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int noteId=Integer.parseInt(request.getParameter("noteId"));	
 		Session session=FactoryProvider.getFactory().openSession();
 		Transaction transaction=session.beginTransaction();
-		Note note=(Note)session.get(Note.class, noteId);
-		session.remove(note);
-		transaction.commit();
-		session.close();
+		HttpSession httpSession=request.getSession();
 		PrintWriter out=response.getWriter();
-		out.print("removed");
+		
+		//int noteId=Integer.parseInt(request.getParameter("noteId"));
+		String noteIdStr=request.getParameter("noteId");
+		if(noteIdStr!=null) {
+			int noteId=Integer.parseInt(noteIdStr);
+			Note note=(Note)session.get(Note.class, noteId);
+			session.remove(note);
+			transaction.commit();
+			session.close();
+			out.print("success");
+		}else{
+			out.print("error");
+			session.close();
+		}
 	}
 }

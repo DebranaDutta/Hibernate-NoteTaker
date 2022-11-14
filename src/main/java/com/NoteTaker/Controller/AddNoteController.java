@@ -36,7 +36,7 @@ public class AddNoteController extends HttpServlet {
 		String noteTitle = request.getParameter("noteTitle");
 		String noteContent = request.getParameter("noteContent");
 
-		Note note = new Note(new Random().nextInt(1000), noteTitle, noteContent, new Date());
+		Note note = new Note(new Random().nextInt(100000), noteTitle, noteContent, new Date());
 		Session session = FactoryProvider.getFactory().openSession();
 		Transaction transaction = session.beginTransaction();
 		session.save(note);

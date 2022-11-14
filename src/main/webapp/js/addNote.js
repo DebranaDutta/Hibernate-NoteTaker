@@ -9,13 +9,21 @@ $(document).ready(function() {
 				noteTitle : noteTitle,
 				noteContent : noteContent
 			},
-			success : function(resp) {
-				console.log(resp);
+			success : function(data, textStatus, jqXHR) {
+				if(data.trim()==='success'){
 				swal("Note added successfully. Redirecting to Show Notes page")
 				.then((value)=>{
 					window.location="showNotes.jsp"
 				});
-			}
+				}else{
+				swal("Something went wrong!")
+				}	
+			},
+			error : function(jqXHR, textStatus, errorThrown){
+				swal("Something went wrong. Please try again");
+			},
+			processData : false,
+			contentType : false
 		});
 	});
 });
