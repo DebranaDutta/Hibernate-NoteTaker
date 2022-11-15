@@ -3,6 +3,7 @@ package com.NoteTaker.Controller;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import javax.servlet.ServletException;
@@ -17,6 +18,8 @@ import org.hibernate.Transaction;
 
 import com.NoteTaker.Entity.Note;
 import com.NoteTaker.Helper.FactoryProvider;
+import com.NoteTaker.Helper.crudOperationOnNotes;
+import com.NoteTaker.Helper.getAllNoteDetails;
 
 @WebServlet(name = "AddNoteController", urlPatterns = {"/AddNoteController"})
 public class AddNoteController extends HttpServlet {
@@ -35,14 +38,14 @@ public class AddNoteController extends HttpServlet {
 			throws ServletException, IOException {
 		String noteTitle = request.getParameter("noteTitle");
 		String noteContent = request.getParameter("noteContent");
-
-		Note note = new Note(new Random().nextInt(100000), noteTitle, noteContent, new Date());
-		Session session = FactoryProvider.getFactory().openSession();
-		Transaction transaction = session.beginTransaction();
-		session.save(note);
-		transaction.commit();
-		session.close();
+		Note note = new Note(new Random().nextInt(10000), noteTitle, noteContent, new Date());
 		PrintWriter out=response.getWriter();
-		out.println("Added");
+		HttpSession httpSession=request.getSession();
+		boolean status=crudOperationOnNotes.addNotes(note);
+		if(status==true) {
+			List<Note> notes=crudOperationOnNotes.getAllNoteDetails();
+			httpSession.setAttribute("notes", notes);
+			out.print("success");
+		}
 	}
 }

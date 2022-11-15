@@ -2,6 +2,7 @@ package com.NoteTaker.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import org.hibernate.Transaction;
 
 import com.NoteTaker.Entity.Note;
 import com.NoteTaker.Helper.FactoryProvider;
+import com.NoteTaker.Helper.crudOperationOnNotes;
 
 @WebServlet(name = "deleteNoteController", urlPatterns = {"/deleteNoteController"})
 public class deleteNoteController extends HttpServlet {
@@ -26,23 +28,15 @@ public class deleteNoteController extends HttpServlet {
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Session session=FactoryProvider.getFactory().openSession();
-		Transaction transaction=session.beginTransaction();
-		HttpSession httpSession=request.getSession();
 		PrintWriter out=response.getWriter();
+		HttpSession httpSession=request.getSession();
 		
-		//int noteId=Integer.parseInt(request.getParameter("noteId"));
-		String noteIdStr=request.getParameter("noteId");
-		if(noteIdStr!=null) {
-			int noteId=Integer.parseInt(noteIdStr);
-			Note note=(Note)session.get(Note.class, noteId);
-			session.remove(note);
-			transaction.commit();
-			session.close();
+		String strNoteId=request.getParameter("noteId");
+		boolean status=crudOperationOnNotes.deleteNotes(strNoteId);
+		if(status==true) {
+			List<Note> notes=crudOperationOnNotes.getAllNoteDetails();
+			httpSession.setAttribute("notes", notes);
 			out.print("success");
-		}else{
-			out.print("error");
-			session.close();
 		}
 	}
 }

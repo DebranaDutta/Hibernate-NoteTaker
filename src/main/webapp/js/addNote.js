@@ -2,6 +2,7 @@ $(document).ready(function() {
 	$('#button2').click(function() {
 		var noteTitle = $('#noteTitle').val();
 		var noteContent = $('#noteContent').val();
+		console.log(noteTitle,noteContent);
 		$.ajax({
 			type : 'POST',
 			url : 'AddNoteController',
@@ -22,8 +23,6 @@ $(document).ready(function() {
 			error : function(jqXHR, textStatus, errorThrown){
 				swal("Something went wrong. Please try again");
 			},
-			processData : false,
-			contentType : false
 		});
 	});
 });

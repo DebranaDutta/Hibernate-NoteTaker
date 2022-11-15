@@ -16,6 +16,8 @@ import org.hibernate.Session;
 
 import com.NoteTaker.Entity.Note;
 import com.NoteTaker.Helper.FactoryProvider;
+import com.NoteTaker.Helper.crudOperationOnNotes;
+import com.NoteTaker.Helper.getAllNoteDetails;
 
 @WebServlet(name = "showNotesController", urlPatterns = {"/showNotesController"})
 public class showNotesController extends HttpServlet {
@@ -26,9 +28,7 @@ public class showNotesController extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		Session session=FactoryProvider.getFactory().openSession();
-		Query query=session.createQuery("from Note");
-		List<Note> notes=query.list();
+		List<Note> notes=crudOperationOnNotes.getAllNoteDetails();
 		HttpSession httpSession=request.getSession();
 		httpSession.setAttribute("notes", notes);
 		response.sendRedirect("showNotes.jsp");

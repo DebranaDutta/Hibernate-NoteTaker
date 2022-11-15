@@ -15,12 +15,18 @@ $(document).on('click','.btnDelete',function(event){
 		data:{
 			noteId:noteId
 		},
-		success:function(resp){
-			console.log(resp);
-			swal("Note deleted successfully. Redirecting to Show Notes page")
-			.then((value)=>{
-				window.location="showNotes.jsp"
-			});
+		success:function(data){
+			if(data.trim()==='success'){
+				swal("Note deleted successfully. Redirecting to Show Notes page")
+				.then((value)=>{
+					window.location="showNotes.jsp"
+				});
+			}else{
+				swal("Something went wrong!")
+			}			
+		},
+		error : function(jqXHR, textStatus, errorThrown){
+			swal("Something went wrong. Please try again");
 		},
 	});
 });
