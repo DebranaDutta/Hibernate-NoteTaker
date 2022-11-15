@@ -34,7 +34,7 @@ ArrayList<Note> notes = (ArrayList<Note>) session.getAttribute("notes");
 				<p class="card-text" style="font-family: cursive;"><%=note.getContent()%></p>
 				<!-- <input type="button" class="btn btn-success btnEdit" id="btnEdit" value="EDIT"/>
 				<input type="button" class="btn btn-danger btnDelete" id="btnDelete" value="DELETE"/> -->
-				<button type="button" class="btn btn-success" value="<%=note.getId()%>">EDIT</button>
+				<button type="button" class="btn btn-success btnEdit" value="<%=note.getId()%>">EDIT</button>
 				<button type="button" class="btn btn-danger btnDelete" value="<%=note.getId()%>">DELETE</button>
 			</div>
 			<div class="card-footer text-center" style="border-radius: 15px; background: #EDF7F7"><%=note.getDate()%></div>
@@ -56,5 +56,6 @@ ArrayList<Note> notes = (ArrayList<Note>) session.getAttribute("notes");
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
 	<!-- Custom Script -->
 	<script type="text/javascript" src="js/deleteNote.js"></script>
+	<script type="text/javascript" src="js/editNote.js"></script>
 </body>
 </html>

@@ -7,7 +7,6 @@ for(let i=0;i<noteId.length;i++){
 }*/
 
 $(document).on('click','.btnDelete',function(event){
-	console.log('bal');
 	var noteId=$(event.target).val();
 	$.ajax({
 		type:'POST',
@@ -17,7 +16,7 @@ $(document).on('click','.btnDelete',function(event){
 		},
 		success:function(data){
 			if(data.trim()==='success'){
-				swal("Note deleted successfully. Redirecting to Show Notes page")
+				swal("Note deleted successfully.")
 				.then((value)=>{
 					window.location="showNotes.jsp"
 				});

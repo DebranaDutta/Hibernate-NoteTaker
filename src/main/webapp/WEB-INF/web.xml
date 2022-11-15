@@ -20,6 +20,18 @@
 		<description></description>
 		<servlet-class>com.NoteTaker.Controller.deleteNoteController</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>editNoteController</servlet-name>
+		<display-name>editNoteController</display-name>
+		<description></description>
+		<servlet-class>com.NoteTaker.Controller.editNoteController</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>saveEditNoteController</servlet-name>
+		<display-name>saveEditNoteController</display-name>
+		<description></description>
+		<servlet-class>com.NoteTaker.Controller.saveEditNoteController</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>AddNoteController</servlet-name>
 		<url-pattern>/AddNoteController</url-pattern>
@@ -31,6 +43,14 @@
 	<servlet-mapping>
 		<servlet-name>deleteNoteController</servlet-name>
 		<url-pattern>/deleteNoteController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>editNoteController</servlet-name>
+		<url-pattern>/editNoteController</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>saveEditNoteController</servlet-name>
+		<url-pattern>/saveEditNoteController</url-pattern>
 	</servlet-mapping>
 	<welcome-file-list>
 		<welcome-file>index.jsp</welcome-file>

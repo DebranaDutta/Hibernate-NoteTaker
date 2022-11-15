@@ -19,7 +19,6 @@ import org.hibernate.Transaction;
 import com.NoteTaker.Entity.Note;
 import com.NoteTaker.Helper.FactoryProvider;
 import com.NoteTaker.Helper.crudOperationOnNotes;
-import com.NoteTaker.Helper.getAllNoteDetails;
 
 @WebServlet(name = "AddNoteController", urlPatterns = {"/AddNoteController"})
 public class AddNoteController extends HttpServlet {
